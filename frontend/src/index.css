@@ -1,46 +1,221 @@
 @import "tailwindcss";
-
-/* ========== FONTS ========== */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Inter:wght@400;500;600&display=swap');
 
-/* ========== CSS VARIABLES ========== */
 :root {
-  --color-bg: #d4e8c2;
-  --color-desktop: #8fbc6f;
+  --color-desktop: #7aad5a;
   --color-window-bg: #f5f0e8;
-  --color-window-title: #3d2b1f;
   --color-titlebar: #5c4033;
   --color-titlebar-text: #f5f0e8;
   --color-accent: #e8a045;
-  --color-accent-hover: #d4883a;
   --color-text: #3d2b1f;
   --color-text-muted: #7a6254;
   --color-border: #8b6f5c;
   --color-taskbar: #3d2b1f;
-  --shadow-window: 4px 4px 0px #3d2b1f, 8px 8px 0px rgba(61,43,31,0.3);
+  --shadow-window: 4px 4px 0px #3d2b1f;
   --font-pixel: 'Press Start 2P', monospace;
   --font-mono: 'VT323', monospace;
   --font-body: 'Inter', sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body, #root {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  width: 100%; height: 100%; overflow: hidden;
 }
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-desktop);
-  color: var(--color-text);
+  cursor: none;
 }
 
+/* ===== OS SHELL ===== */
+.os-shell {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ===== DESKTOP ===== */
+.desktop {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-desktop);
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(255,255,255,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 40%);
+}
+
+/* Decorative background elements */
+.desktop__bg-deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.deco {
+  position: absolute;
+  font-size: 2.5rem;
+  opacity: 0.25;
+  animation: float 6s ease-in-out infinite;
+}
+.deco--leaf1  { top: 10%; left: 5%; animation-delay: 0s; }
+.deco--leaf2  { top: 70%; left: 2%; animation-delay: 2s; }
+.deco--mushroom { top: 15%; right: 6%; animation-delay: 1s; }
+.deco--flower { bottom: 20%; right: 4%; animation-delay: 3s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-12px) rotate(3deg); }
+}
+
+/* ===== DESKTOP ICONS ===== */
+.desktop-icons {
+  position: absolute;
+  top: 24px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 80px;
+  padding: 8px 4px;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: none;
+  transition: background 0.15s, border-color 0.15s;
+  color: var(--color-titlebar-text);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.desktop-icon:hover,
+.desktop-icon.active {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.desktop-icon__emoji {
+  font-size: 2rem;
+  display: block;
+  filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.4));
+}
+
+.desktop-icon__label {
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  text-align: center;
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+/* ===== TASKBAR ===== */
+.taskbar {
+  height: 44px;
+  background: var(--color-taskbar);
+  border-top: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 8px;
+  flex-shrink: 0;
+  z-index: 9999;
+}
+
+.taskbar__start {
+  padding: 4px 12px;
+  background: var(--color-accent);
+  border: 2px solid #c07020;
+  border-radius: 2px;
+  cursor: none;
+}
+
+.taskbar__logo {
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  color: #3d2b1f;
+  white-space: nowrap;
+}
+
+.taskbar__windows {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.taskbar__btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 2px;
+  color: #f5f0e8;
+  font-family: var(--font-pixel);
+  font-size: 0.42rem;
+  cursor: none;
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background 0.15s;
+}
+
+.taskbar__btn--active {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.4);
+}
+
+.taskbar__btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.taskbar__clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: auto;
+  color: #f5f0e8;
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  line-height: 1.5;
+}
+
+.taskbar__date {
+  font-size: 0.38rem;
+  opacity: 0.7;
+}
+
+/* ===== CUSTOM CURSOR ===== */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  font-size: 1.4rem;
+  transform-origin: 0 0;
+  will-change: transform;
+  transition: font-size 0.1s;
+  margin-left: -4px;
+  margin-top: -4px;
+}
+
+.custom-cursor--click {
+  font-size: 1.1rem;
+}
+
+/* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--color-window-bg); }
 ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
