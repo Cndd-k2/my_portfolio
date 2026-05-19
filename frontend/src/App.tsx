@@ -1,6 +1,11 @@
 import { Desktop } from './components/Desktop/Desktop'
 import { Taskbar } from './components/Taskbar/Taskbar'
 import { CustomCursor } from './components/Cursor/CustomCursor'
+import { Window } from './components/Window/Window'
+import { AboutContent } from './components/About/AboutContent'
+import { ProjectsContent } from './components/Projects/ProjectsContent'
+import { ContactContent } from './components/Contact/ContactContent'
+import { LinksContent } from './components/Links/LinksContent'
 
 function App() {
   return (
@@ -8,7 +13,10 @@ function App() {
       <CustomCursor />
       <div className="os-shell">
         <Desktop>
-          {/* Windows will be added in next task */}
+          <Window id="about"><AboutContent /></Window>
+          <Window id="projects"><ProjectsContent /></Window>
+          <Window id="contact"><ContactContent /></Window>
+          <Window id="links"><LinksContent /></Window>
         </Desktop>
         <Taskbar />
       </div>
