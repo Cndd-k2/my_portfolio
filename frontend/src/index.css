@@ -508,3 +508,178 @@ body {
   color: var(--color-text-muted);
   text-align: center;
 }
+
+/* ===== CAT MASCOT ===== */
+.cat-mascot-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+}
+
+.cat-mascot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.25));
+}
+
+/* Ears */
+.cat__ears {
+  display: flex;
+  justify-content: space-between;
+  width: 68px;
+  margin-bottom: -6px;
+  position: relative;
+  z-index: 1;
+}
+
+.cat__ear {
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-bottom: 22px solid #5c4033;
+}
+
+.cat__ear--left  { transform: rotate(-10deg); }
+.cat__ear--right { transform: rotate(10deg); }
+
+/* Head */
+.cat__head {
+  width: 80px;
+  height: 72px;
+  background: #f5e6d0;
+  border: 3px solid #5c4033;
+  border-radius: 50% 50% 45% 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.cat__face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.cat__eyes {
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  color: #3d2b1f;
+  line-height: 1;
+}
+
+.cat__nose {
+  font-size: 0.55rem;
+  color: #e8a045;
+  line-height: 1;
+}
+
+.cat__mouth {
+  font-size: 0.75rem;
+  color: #3d2b1f;
+  line-height: 1;
+}
+
+.cat__blush {
+  position: absolute;
+  font-size: 0.6rem;
+  color: #ffb3ba;
+  opacity: 0.8;
+}
+.cat__blush--left  { left: 6px;  top: 38px; }
+.cat__blush--right { right: 6px; top: 38px; }
+
+/* Body */
+.cat__body {
+  width: 70px;
+  height: 55px;
+  background: #f5e6d0;
+  border: 3px solid #5c4033;
+  border-top: none;
+  border-radius: 0 0 30px 30px;
+  position: relative;
+  margin-top: -3px;
+  z-index: 2;
+}
+
+/* Tail */
+.cat__tail {
+  position: absolute;
+  right: -20px;
+  bottom: 6px;
+  width: 18px;
+  height: 36px;
+  background: #f5e6d0;
+  border: 3px solid #5c4033;
+  border-radius: 0 50% 50% 50%;
+  transform-origin: bottom left;
+}
+
+/* Paws */
+.cat__paws {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.cat__paw {
+  width: 22px;
+  height: 14px;
+  background: #f5e6d0;
+  border: 3px solid #5c4033;
+  border-radius: 50%;
+}
+
+/* Speech bubble */
+.cat__bubble {
+  position: absolute;
+  top: -28px;
+  right: -10px;
+  font-size: 1.1rem;
+  background: white;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 var(--color-border);
+}
+
+/* Zzz */
+.cat__zzz {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--color-accent);
+}
+
+/* Mood variants */
+.cat-mascot--happy .cat__head,
+.cat-mascot--happy .cat__body { background: #fef0e0; }
+
+.cat-mascot--sleepy .cat__head,
+.cat-mascot--sleepy .cat__body { background: #e8ddd0; }
+
+/* Hint text */
+.cat-mascot__hint {
+  font-family: var(--font-pixel);
+  font-size: 0.3rem;
+  color: rgba(255,255,255,0.6);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  white-space: nowrap;
+  margin-top: 8px;
+}
